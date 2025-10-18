@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MiniJuegos</title>
+
+  <!--
+    Autores:
+    Apellido, Curbelo — Nº de 348182
+    Apellido, Vaz — Nº de estudiante
+    Grupo: ____
+ 
+  -->
+    <header>
+        <h1>¡Mini Juegos para todos!</h1>
+    </header>
+
+    <nav>
+        <button type="button" id="btn-datos">Datos</button>
+        <button type="button" id="btn-juegos">Juegos</button>
+        <button type="button" id="btn-Administrador">Administrador</button>
+    </nav>
+
+    <main>
+        <section id="datos">
+            <h2>Datos</h2>
+
+            <article>
+                <h2>Alta de jugadores</h2>
+                <form>
+                    <label for="txtNom">Nombre:</label>
+                    <input type="text" id="txtNom" name="nombreJugador">
+
+                    <label for="edad">Edad:</label>
+                    <input type="number" id="edad" name="edad" min="5" max="100" required>
+
+                    <button type="button" id="btn-agjugador">Agregar</button>
+                </form>
+            </article>
+
+            <article>
+                <h2>Información</h2>
+                <div class="orden-radio">
+                    <input type="radio" id="nomcreciente" name="tipo_comentario" value="nomcreciente" checked>
+                    <label for="nomcreciente">Comentarios ordenados por nombre creciente</label>
+
+                    <input type="radio" id="edadcreciente" name="tipo_comentario" value="edadcreciente" checked>
+                    <label for="edadcreciente">Comentarios ordenados por edad creciente</label>
+                </div>
+
+                <p1>Destacar: (ingrese palabra a destacar en los comentarios)</p1>
+                <label for="destacar">
+                <input type="text" id="destacar" required>
+            </article>
+
+            <article>
+                <table>
+                    <th>Nombre</th>
+                    <th>Jugador</th>
+                    <th>Edad</th>
+                    <th>Comentario</th>
+                </table>
+            </article>
+
+            <article>
+                <p>Jugador/es con mayor cantidad de comentarios (ordenados por nombre)</p>
+                <ul class="lista-orden">
+                    <li>Sin datos</li>
+                </ul>
+
+                <p>Jugador/es que nunca jugaron: (ordenados por nombre)</p>
+                <ul class="lista-orden">
+                    <li>Sin datos</li>
+                </ul>
+            </article>
+        </section>
+
+        <section id="juegos">
+            <h2>¡Juegos!</h2>
+            <article>
+                <h2>Configurar</h2>
+                <form>
+                    <label for="jugador">Jugador:</label>
+                    <select id="jugador" name="jugador" required>
+                        <option value="" disabled selected>Seleccione un</option>
+                    </select>
+                </form>
+
+            </article>
+        </section>
+    </main>
