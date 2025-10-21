@@ -1,0 +1,172 @@
+<!--Autores:
+  Apellido: Curbelo — Nº de 348182
+  Apellido: Vaz — Nº de 282487
+  Grupo: nocturno -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width>
+    <link rel="stylesheet" href="css/estilos.css">
+    <title>Mini Juegos</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="titilante">¡Mini Juegos para todos!</h1>
+
+      <nav class="nav-top" aria-label="Navegación principal">
+        <button type="button" onclick="location.href='#datos'">Datos</button>
+        <button type="button" onclick="location.href='#juego'">Juegos</button>
+        <button type="button" onclick="location.href='#admin'">Administrador</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="datos">
+        <h2>Datos</h2>
+
+        <article>
+          <h3>Alta de jugadores</h3>
+          <form id="form-alta">
+            <label for="txtNom">Nombre:</label>
+            <input type="text" id="txtNom" name="nombreJugador" required>
+
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" min="5" max="100" required>
+
+            <button type="submit" id="btn-agregar">Agregar</button>
+          </form>
+        </article>
+
+        <article>
+          <h3>Información</h3>
+
+          <div class="orden-comentarios">
+            <label for="orden-nombre">
+              <input id="orden-nombre" type="radio" name="orden" value="nombre" checked>
+              Comentarios ordenados por nombre creciente
+            </label>
+            <label for="orden-edad">
+              <input id="orden-edad" type="radio" name="orden" value="edad">
+              Comentarios ordenados por edad creciente
+            </label>
+          </div>
+
+          <p>
+            <label for="destacar">Destacar (ingrese palabra a destacar en los comentarios)</label>
+            <input type="text" id="destacar" name="destacar">
+          </p>
+
+          <table id="tabla-comentarios">
+            <thead>
+              <tr>
+                <th><strong>Nombre</strong></th>
+                <th><strong>Jugador</strong></th>
+                <th><strong>Edad</strong></th>
+                <th><strong>Comentario</strong></th>
+              </tr>
+            </thead>
+          </table>
+
+          <p>Jugador/es con mayor cantidad de comentarios (ordenados por nombre)</p>
+          <ul id="lista-mayor-comentarios" class="lista-orden"><li>Sin datos</li></ul>
+
+          <p>Jugador/es que nunca jugaron: (ordenados por nombre)</p>
+          <ul id="lista-nunca-jugaron" class="lista-orden"><li>Sin datos</li></ul>
+        </article>
+      </section>
+
+      <section id="juego">
+        <h2>¡Juegos!</h2>
+
+        <article>
+          <h3>Configurar</h3>
+          <form id="form-config">
+            <label for="jugador">Jugador:</label>
+            <select id="jugador" name="jugador" required>
+              <option value=""></option>
+            </select>
+
+            <label for="con-sonido">
+                Con sonido
+              <input type="checkbox" id="con-sonido" name="conSonido">
+            </label>
+          </form>
+        </article>
+
+        <article>
+          <h3>¿Cuál es el diferente?</h3>
+          <strong>Presiona el diferente</strong>
+        </article>
+
+        <article>
+          <h3>Calcula la suma</h3>
+          <strong>Suma los dos números</strong>
+          <form id="form-suma">
+            <input type="number" id="suma-res" name="resultado" required>
+            <button type="button" id="btn-enviar-suma">Enviar</button>
+          </form>
+        </article>
+
+        <article>
+          <h3>Ingresa tu comentario</h3>
+          <form id="form-comentario">
+            <textarea id="comentario" name="comentario" rows="5" cols="40" required></textarea>
+            <button type="button" id="btn-enviar-comentario">Enviar comentario</button>
+          </form>
+        </article>
+      </section>
+
+<section id="admin">
+  <h2>Modo Administrador</h2>
+
+  <article>
+    <h3>Resumen (datos ordenados por nombre de jugador)</h3>
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Jugador</th>
+          <th>Edad</th>
+          <th>Diferente: </th>
+          <th>Diferente: </th>
+          <th>Suma: </th>
+          <th>Suma: </th>
+          <th>Cantidad de comentarios</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>✅</td>
+          <td>❌</td>
+          <td>✅</td>
+          <td>❌</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+
+  <article>
+    <h3>Edición de Comentarios (datos ordenados por hora)</h3>
+    <table id="tabla-edicion-comentarios">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Jugador</th>
+          <th>Hora del Comentario</th>
+          <th>Comentario</th>
+        </tr>
+      </thead>
+    </table>
+<p></p>
+    <button type="button" id="btn-actualizar-comentarios">Actualizar Todos los Comentarios</button>
+  </article>
+</section>
+
+<footer>
+  <p>Desarrollado por Curbelo (348182) y Vaz (282487) — Grupo: nocturno</p>
+</footer>
