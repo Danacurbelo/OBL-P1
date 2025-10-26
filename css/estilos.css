@@ -1,0 +1,264 @@
+/* Apellido: Curbelo — Nº de estudiante 348182
+Apellido: Vaz — Nº de estudiante 282487
+Grupo: nocturno */
+
+/* general */
+body {
+  background-color: #ffffffff; /* Fondo general */
+  font-family: Arial;
+  margin: 10px;
+}
+/* centrar todo el contenedor principal */
+#contenedor-principal {
+  width: 80%;      
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* fondo blanco */
+header {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* titulo principal en negro */
+h1 {
+  color: #525050ff;
+  margin: 0;
+}
+
+/* botones del nav */
+.nav-top {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #0a55aaff;   
+  padding: 5px;
+  border-bottom-left-radius: 8px;         
+}
+
+/* estilo de los botones del nav */
+.nav-top button {
+  background-color: #e6e6e6;  
+  border: 2px solid black;
+  padding: 3px 10px;
+  margin: 0 3px;              
+  cursor: pointer;
+}
+
+
+/* contenedor datos */
+#datos {
+  background-color: #0073c7;
+  padding: 15px;
+  border-radius: 10px;
+  color: black;
+}
+
+#datos h2 {
+  color: black;
+}
+
+/* subcoontenedores celestes */
+#datos article {
+  background-color: #3396dd;
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 10px;
+
+  border: 3px solid white;
+}
+
+#datos h3 {
+  margin-bottom: 10px;
+  color: black;
+}
+
+/* form alta jugadores */
+#form-alta label {
+  font-weight: bold;
+  color: black;
+}
+
+#form-alta input {
+  margin-right: 10px;
+  padding: 3px;
+}
+
+#btn-agregar {
+  padding: 4px 10px;
+  border: 2px solid #003b66;
+  background-color: #e4e4e4ff;
+}
+
+/* orden comentarios */
+.orden-comentarios {
+  margin-bottom: 10px;
+  color: black;
+}
+
+/* tabla comentarios */
+#tabla-comentarios {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#tabla-comentarios {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: none;
+}
+
+#tabla-comentarios th {
+  border: 7px double black;
+  background-color: #888484ff;
+  padding: 1px;
+}
+
+#tabla-comentarios tbody td {
+  border: 1px solid #000;
+  background-color: #ffffff;
+  padding: 6px 8px;
+  text-align: left;
+}
+
+#tabla-comentarios thead th:nth-child(1){width:30%} /* Nombre */
+#tabla-comentarios thead th:nth-child(2){width:20%} /* Jugador */
+#tabla-comentarios thead th:nth-child(3){width:15%} /* Edad */
+#tabla-comentarios thead th:nth-child(4){width:35%} /* Comentario */
+
+/* listas */
+.lista-orden {
+  margin-left: 25px;
+}
+
+.lista-orden li {
+  list-style-type: disc;
+  margin-left: 10px;
+  color: black;
+}
+/* seccion juegos */
+
+#juego {
+  background-color: #0073c7;   
+  padding: 15px;
+  border-radius: 10px;
+  color: black;
+  margin-top: 25px;
+}
+
+#juego h2 {
+  color: black;
+}
+
+/* sub contenedores en juegos */
+#juego article {
+  background-color: #3396dd; 
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 3px solid white;   
+}
+
+#juego h3 {
+  margin-bottom: 10px;
+  color: black;
+  font-weight: bold;
+}
+
+/* inputs y selects en juegos */
+#juego input,
+#juego select,
+#juego textarea {
+  border: 1px solid black;
+  padding: 3px;
+  margin-top: 5px;
+  margin-bottom: 8px;
+}
+
+/* botones en juegos */
+#juego button {
+  padding: 4px 10px;
+  border: 2px solid #003b66;
+  background-color: #e6e6e6;
+  cursor: pointer;
+  margin-top: 5px;
+}
+/* seccion modo admin */
+
+#admin {
+  background-color: #0073c7;    
+  padding: 15px;
+  border-radius: 10px;
+  color: black;
+  margin-top: 25px;
+}
+
+#admin h2 {
+  color: black;
+}
+
+/* Sub contenedores */
+#admin article {
+  background-color: #3396dd;   
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 3px solid white;    
+}
+
+#admin h3 {
+  margin-bottom: 10px;
+  color: black;
+  font-weight: bold;
+}
+
+/* tabla admin */
+
+#admin table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 7px double black;     
+  background-color: #888484;   
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+#admin th,
+#admin td {    
+  padding: 4px;
+  text-align: center;
+  background-color: #888484;   
+  font-weight: bold;
+}
+
+#admin td {
+  font-weight: normal;
+}
+
+/* Botón de Actualizar Comentarios */
+#btn-actualizar-comentarios {
+  padding: 4px 10px;
+  border: 2px solid #003b66;
+  background-color: #e6e6e6;
+  cursor: pointer;
+  margin-top: 8px;
+}
+/* footer */
+
+footer {
+  background-color: #888484;   
+  text-align: center;        
+  padding: 0;              
+  margin-top: -14px;
+  width: 100%;
+  font-size: 14px;
+  color: black;
+  border-radius: 5px;
+}
