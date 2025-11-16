@@ -3,89 +3,83 @@ Apellido: Vaz — Nº de estudiante 282487
 Grupo: nocturno */
 
 class Jugador {
-    constructor (nombreJugador, edadJugador){
-        this.nombre = nombreJugador;
-        this.edad = edadJugador;
-        this.cantJugo=0;
-        this.cantGano=0;
-        this.cantJugoSuma=0;
-        this.cantGanoSuma=0;
+    constructor(nombre, edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.cantIconoGanadas = 0;
+        this.cantIconoPerdidas = 0;
+        this.cantSumaGanadas = 0;
+        this.cantSumaPerdidas = 0;
         this.listaComentarios = [];
 
     }
-    agregarComentario(comentarioNuevo){
-        this.listaComentarios.push(comentarioNuevo);
+    agregarComentario(comentario) {
+        this.listaComentarios.push(comentario);
     }
-    registrarJugada(acerto){
-        this.cantJugo = this.cantJugo + 1;
-        if (acerto){
-            this.cantGano= this.cantGano + 1;
-        }
+    jugo() {
+        return (this.cantIconoGanadas > 0 || this.cantIconoPerdidas > 0 || this.cantSumaGanadas > 0 || this.cantSumaPerdidas > 0)
     }
-    registrarJugadaSuma(acerto){
-        this.cantJugoSuma = this.cantJugoSuma + 1;
-        if (acerto){
-            this.cantGanoSuma= this.cantGanoSuma + 1;
-        }
-    }
-    cantComentarios(){
-        let cantidad = this.listaComentarios.length;
-        return cantidad
+    cantComentarios() {
+        return this.listaComentarios.length;
     }
 }
 
 class Comentario {
-    constructor (nombreJugador, texto){
-        this.nombreJugador= nombreJugador;
-        this.texto= texto;
-        this.hora= new Date()
-    }
-    obtenerHora(){
-        let horas= this.hora.getHours();
-        let minutos = this.hora.getMinutes();
-        if (minutos < 10){
-            minutos = "0" + minutos;
-        }
-        let textoHora= horas + ":" + minutos;
-        return textoHora;
+    constructor(nombre, texto) {
+        this.nombre = nombre;
+        this.texto = texto;
+        this.hora = new Date().toLocaleTimeString();
     }
 }
 
 class Sistema {
-    constructor (){
-        this.listaJugadores=[];
-        this.listaComentarios=[];
+    constructor() {
+        this.listaJugadores = [];
+        this.listaComentarios = [];
     }
-    agregarJugador(nombreJugador, edadJugador){
+    agregarJugador(nombre, edad) {
         let existe = false;
-        for(let i=0; i<this.listaJugadores.length; i++){
-            if(this.listaJugadores[i].nombre == nombreJugador){
-                existe=true;
+        for (let i = 0; i < this.listaJugadores.length; i++) {
+            if (this.listaJugadores[i].nombre == nombre) {
+                existe = true;
             }
         }
-        if(existe=== false && edadJugador >= 5 && edadJugador<=100){
-            let nuevoJugador= new Jugador(nombreJugador, edadJugador);
+        if (existe === false && edad >= 5 && edad <= 100) {
+            let nuevoJugador = new Jugador(nombre, edad);
             this.listaJugadores.push(nuevoJugador);
+            return true;
+        } else {
+            return false;
         }
     }
-
-    agregarComentario(nombreJugador,texto){
-        let comentarioNuevo= new Comentario(nombreJugador, texto);
+    agregarComentario(nombre, texto) {
+        if (texto.trim() === "") {
+            return;
+        }
+        let comentarioNuevo = new Comentario(nombre, texto);
         this.listaComentarios.push(comentarioNuevo);
-        for(let i=0; i< this.listaJugadores.length; i++){
-            if(this.listaJugadores[i].nombre === nombreJugador){
+        for (let i = 0; i < this.listaJugadores.length; i++) {
+            if (this.listaJugadores[i].nombre === nombre) {
                 this.listaJugadores[i].agregarComentario(comentarioNuevo);
             }
         }
     }
-    jugadoresQueNuncaJugaron(){
-        let listaResultado=[];
-        for(let i=0; i<this.listaJugadores.length; i++){
-            let jugador= this.listaJugadores[i];
-            if(jugador.cantJugo===0 && jugador.cantJugoSuma===0){
-                listaResultado.push(jugador)
+    jugadoresQueNuncaJugaron() {
+        let listaNoJugaron = [];
+        for (let i = 0; i < this.listaJugadores.length; i++) {
+            let jugador = this.listaJugadores[i];
+            if (!jugador.jugo()) {
+                listaNoJugaron.push(jugador)
             }
         }
-        return listaResultado
+        return listaNoJugaron
+    }
+    buscarJugadorPorNombre(nombre) {
+        for (let i = 0; i < this.listaJugadores.length; i++) {
+            if (this.listaJugadores[i].nombre === nombre) {
+                return this.listaJugadores[i];
+            }
+        }
+        return null;
     }
 }
