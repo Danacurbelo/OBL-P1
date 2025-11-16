@@ -2,7 +2,6 @@
 Apellido: Vaz — Nº de estudiante 282487
 Grupo: nocturno */
 
-/* ===== GENERAL ===== */
 html,
 body {
   margin: 0;
@@ -10,19 +9,17 @@ body {
 }
 
 body {
-  background-color: #ffffff; /* Fondo general */
+  background-color: #ffffff;
   font-family: Arial, sans-serif;
   color: black;
 }
 
-/* Centrar contenido principal */
 #contenedor-principal {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* ===== HEADER ===== */
 header {
   background-color: white;
   padding: 10px;
@@ -30,7 +27,6 @@ header {
   position: relative;
 }
 
-/* Título principal titilante */
 h1 {
   color: #525050;
   margin: 0;
@@ -41,14 +37,14 @@ h1 {
   from {
     color: #525050;
   }
+
   to {
     color: #b3b3b3;
   }
 }
 
-/* ===== NAVEGACIÓN SUPERIOR ===== */
 .nav-top {
-  position: fixed; /* Menú fijo */
+  position: fixed;
   top: 15px;
   right: 15px;
   background-color: #0a55aa;
@@ -66,7 +62,7 @@ h1 {
 }
 
 section {
-  margin: 2px; /* elimina espacios entre bloques */
+  margin: 2px;
   padding: 5px;
   margin-left: 10%;
   margin-right: 10%;
@@ -81,10 +77,9 @@ section {
   margin-top: 0;
 }
 
-/* ===== ARTÍCULOS ===== */
 #datos article,
 #juego article,
-#admin > article {  /* <--- cambio aquí */
+#admin>article {
   background-color: #3396dd;
   border: 2px solid white;
   border-radius: 10px;
@@ -92,7 +87,6 @@ section {
   margin-top: 1px;
 }
 
-/* ===== FORMULARIOS Y BOTONES ===== */
 #form-alta label {
   font-weight: bold;
 }
@@ -161,9 +155,11 @@ section {
 #tabla-comentarios .col-nombre {
   width: 30%;
 }
+
 #tabla-comentarios .col-edad {
   width: 20%;
 }
+
 #tabla-comentarios .col-comentario {
   width: 50%;
 }
@@ -171,29 +167,35 @@ section {
 #tabla-edicion-comentarios .edicion-col1 {
   width: 25%;
 }
+
 #tabla-edicion-comentarios .edicion-col2 {
   width: 25%;
 }
+
 #tabla-edicion-comentarios .edicion-col3 {
   width: 50%;
 }
 
 .admin-table tbody td {
-  background-color: #e4e4e4;
+  background-color: #888484;
   color: black;
 }
+
 .admin-table .col1 {
   width: 25%;
 }
+
 .admin-table .col2 {
   width: 15%;
 }
+
 .admin-table .col3,
 .admin-table .col4,
 .admin-table .col5,
 .admin-table .col6 {
   width: 8%;
 }
+
 .admin-table .col7 {
   width: 20%;
 }
@@ -220,7 +222,6 @@ footer p {
   margin: 0;
 }
 
-/* Contenedor único para los 2 artículos del Administrador */
 .admin-contenedor {
   background-color: #3396dd;
   border: 2px solid white;
@@ -228,7 +229,6 @@ footer p {
   padding: 10px;
 }
 
-/* Los artículos internos ya no llevan borde ni fondo */
 .admin-contenedor article {
   background-color: transparent;
   border: none;
@@ -237,8 +237,59 @@ footer p {
   padding: 8px 0;
 }
 
-/* Ajuste de títulos internos */
 .admin-contenedor h3 {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.destacado {
+  color: red;
+  font-weight: bold;
+}
+
+#grilla-diferente {
+  margin-top: 0px;
+  padding: 0px 12px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 0px solid #cccccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.fila-grilla {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.btn-grilla {
+  width: 70px;
+  height: 20px;
+
+  font-size: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #f3f3f3;
+  border: 1px solid #000 !important;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.15s;
+  padding: 0;
+}
+
+.btn-grilla:hover {
+  background-color: #e4e4e4;
+}
+
+.input-edicion {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  text-align: center;
 }
