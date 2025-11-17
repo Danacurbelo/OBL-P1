@@ -46,8 +46,8 @@ function inicio() {
     actualizarResumenAdministrador();
     document.getElementById("suma-res").addEventListener("keydown", function (e) {
         if (e.key === "Enter") {
-            e.preventDefault();  // evita que el form se envíe
-            verificarSuma();     // ejecuta tu función como si apretaras el botón
+            e.preventDefault();  
+            verificarSuma();     
         }
     });
     document.getElementById("btn-actualizar-comentarios").addEventListener("click", actualizarTodosLosComentarios);
@@ -471,4 +471,5 @@ function actualizarResumenAdministrador() {
         cuerpo.appendChild(fila);
     }
 }
+
 
