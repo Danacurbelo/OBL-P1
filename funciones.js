@@ -62,8 +62,8 @@ function agregarJugador(event) {
     if (fueAgregado === true) {
         alert("Jugador agregado correctamente");
         actualizarComboJugadores();
-        mostrarJugadoresNuncaJugaron();   //👈 TE FALTABA ESTO//
-        mostrarMayorCantidadComentarios(); // 👈 OPCIONAL PERO RECOMENDADO//
+        mostrarJugadoresNuncaJugaron();   
+        mostrarMayorCantidadComentarios(); 
         actualizarResumenAdministrador();
     } else {
         alert("Nombre repetido o datos inválidos");
@@ -471,3 +471,4 @@ function actualizarResumenAdministrador() {
         cuerpo.appendChild(fila);
     }
 }
+
