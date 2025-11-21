@@ -38,13 +38,14 @@ class Sistema {
         this.listaComentarios = [];
     }
     agregarJugador(nombre, edad) {
+        nombre = nombre.trim();
         let existe = false;
         for (let i = 0; i < this.listaJugadores.length; i++) {
-            if (this.listaJugadores[i].nombre == nombre) {
+            if (this.listaJugadores[i].nombre.toLowerCase() === nombre.toLowerCase()) {
                 existe = true;
             }
         }
-        if (existe === false && edad >= 5 && edad <= 100) {
+        if (!existe && edad >= 5 && edad <= 100) {
             let nuevoJugador = new Jugador(nombre, edad);
             this.listaJugadores.push(nuevoJugador);
             return true;
@@ -52,6 +53,8 @@ class Sistema {
             return false;
         }
     }
+
+
     agregarComentario(nombre, texto) {
         if (texto.trim() === "") {
             return;
