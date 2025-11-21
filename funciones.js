@@ -46,31 +46,72 @@ function inicio() {
     actualizarResumenAdministrador();
     document.getElementById("suma-res").addEventListener("keydown", function (e) {
         if (e.key === "Enter") {
-            e.preventDefault();  
-            verificarSuma();     
+            e.preventDefault();
+            verificarSuma();
         }
     });
     document.getElementById("btn-actualizar-comentarios").addEventListener("click", actualizarTodosLosComentarios);
     mostrarComentariosAdmin();
     document.getElementById("jugador").addEventListener("change", limpiarSuma);
+    document.getElementById("datos").style.display = "block";
+    document.getElementById("juego").style.display = "none";
+    document.getElementById("admin").style.display = "none";
+}
+function irAJuego() {
+    if (sistema.listaJugadores.length === 0) {
+        alert("Debe registrar al menos un jugador para acceder a los juegos.");
+        return;
+    }
+    document.getElementById("datos").style.display = "none";
+    document.getElementById("juego").style.display = "block";
+    document.getElementById("admin").style.display = "none";
+    location.href = "#juego";
+}
+function mostrarDatos() {
+    document.getElementById("datos").style.display = "block";
+    document.getElementById("juego").style.display = "none";
+    document.getElementById("admin").style.display = "none";
+    location.href = "#datos";
+}
+function irAAdmin() {
+    if (sistema.listaJugadores.length === 0) {
+        alert("Debe registrar al menos un jugador para acceder al administrador.");
+        return;
+    }
+    document.getElementById("datos").style.display = "none";
+    document.getElementById("juego").style.display = "none";
+    document.getElementById("admin").style.display = "block";
+    location.href = "#admin";
 }
 function agregarJugador(event) {
     event.preventDefault();
-    let nombre = document.getElementById("txtNom").value;
+    let nombre = document.getElementById("txtNom").value.trim();
     let edad = Number(document.getElementById("edad").value);
-    let fueAgregado = sistema.agregarJugador(nombre, edad);
-    if (fueAgregado === true) {
-        alert("Jugador agregado correctamente");
-        actualizarComboJugadores();
-        mostrarJugadoresNuncaJugaron();   
-        mostrarMayorCantidadComentarios(); 
-        actualizarResumenAdministrador();
-    } else {
-        alert("Nombre repetido o datos inválidos");
+    if (nombre === "") {
+        alert("El nombre no puede estar vacío.");
+        return;
     }
+    if (edad < 5 || edad > 100) {
+        alert("La edad debe estar entre 5 y 100 años.");
+        return;
+    }
+    for (let i = 0; i < sistema.listaJugadores.length; i++) {
+        if (sistema.listaJugadores[i].nombre.toLowerCase() === nombre.toLowerCase()) {
+            alert("Ese nombre ya existe. No se puede repetir.");
+            return;
+        }
+    }
+    sistema.agregarJugador(nombre, edad);
+    alert("Jugador agregado correctamente");
+    actualizarComboJugadores();
+    mostrarJugadoresNuncaJugaron();
+    mostrarMayorCantidadComentarios();
+    actualizarResumenAdministrador();
     document.getElementById("txtNom").value = "";
     document.getElementById("edad").value = "";
 }
+
+
 function actualizarComboJugadores() {
     let combo = document.getElementById("jugador");
     combo.innerHTML = "";
@@ -91,20 +132,26 @@ function actualizarComboJugadores() {
 }
 function agregarComentario(event) {
     event.preventDefault();
+
     let nombre = document.getElementById("jugador").value;
-    let texto = document.getElementById("comentario").value;
-    if (nombre !== "" && texto.trim() !== "") {
-        sistema.agregarComentario(nombre, texto);
-        alert("Comentario agregado correctamente");
-        mostrarComentarios();
-        mostrarMayorCantidadComentarios();
-        mostrarJugadoresNuncaJugaron();
-        actualizarResumenAdministrador();
-    } else {
-        alert("Debe seleccionar un jugador y escribir un comentario");
+    let texto = document.getElementById("comentario").value.trim();
+    if (nombre === "") {
+        alert("Debe seleccionar un jugador");
+        return;
     }
+    if (texto === "") {
+        alert("El comentario no puede estar vacío");
+        return;
+    }
+    sistema.agregarComentario(nombre, texto);
+    alert("Comentario agregado correctamente");
+    mostrarComentarios();
+    mostrarMayorCantidadComentarios();
+    mostrarJugadoresNuncaJugaron();
+    actualizarResumenAdministrador();
     document.getElementById("comentario").value = "";
 }
+
 function mostrarComentarios() {
     let tabla = document.getElementById("tabla-comentarios");
     tabla.innerHTML = `
@@ -256,7 +303,7 @@ function mostrarJugadoresNuncaJugaron() {
         lista = ordenarPorNombre(lista);
         for (let i = 0; i < lista.length; i++) {
             let li = document.createElement("li");
-            li.textContent = lista[i].nombre + " (" + lista[i].edad + "años" + ")";
+            li.textContent = lista[i].nombre + " (" + lista[i].edad + " años" + ")";
             ul.appendChild(li);
         }
     }
@@ -443,6 +490,7 @@ function actualizarTodosLosComentarios() {
         let nuevoTexto = inputs[i].value;
         let indice = Number(inputs[i].getAttribute("data-index"));
         sistema.listaComentarios[indice].texto = nuevoTexto;
+        sistema.listaComentarios[indice].hora = new Date().toLocaleTimeString();
     }
     alert("Comentarios actualizados correctamente.");
     mostrarComentarios();
@@ -450,6 +498,7 @@ function actualizarTodosLosComentarios() {
     mostrarMayorCantidadComentarios();
     actualizarResumenAdministrador();
 }
+
 function actualizarResumenAdministrador() {
     let tabla = document.getElementById("tabla-admin");
     if (!tabla) return;
@@ -471,5 +520,3 @@ function actualizarResumenAdministrador() {
         cuerpo.appendChild(fila);
     }
 }
-
-
