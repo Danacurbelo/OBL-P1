@@ -110,8 +110,6 @@ function agregarJugador(event) {
     document.getElementById("txtNom").value = "";
     document.getElementById("edad").value = "";
 }
-
-
 function actualizarComboJugadores() {
     let combo = document.getElementById("jugador");
     combo.innerHTML = "";
@@ -151,7 +149,6 @@ function agregarComentario(event) {
     actualizarResumenAdministrador();
     document.getElementById("comentario").value = "";
 }
-
 function mostrarComentarios() {
     let tabla = document.getElementById("tabla-comentarios");
     tabla.innerHTML = `
@@ -366,7 +363,6 @@ function verificarSuma() {
         mostrarJugadoresNuncaJugaron();
     }
 }
-
 function generarGrillaDiferente() {
     let filas = Math.floor(Math.random() * 3) + 2;
     let columnas = Math.floor(Math.random() * 3) + 2;
@@ -489,8 +485,11 @@ function actualizarTodosLosComentarios() {
     for (let i = 0; i < inputs.length; i++) {
         let nuevoTexto = inputs[i].value;
         let indice = Number(inputs[i].getAttribute("data-index"));
-        sistema.listaComentarios[indice].texto = nuevoTexto;
-        sistema.listaComentarios[indice].hora = new Date().toLocaleTimeString();
+        let comentario = sistema.listaComentarios[indice];
+        if (comentario.texto !== nuevoTexto) {
+            comentario.texto = nuevoTexto;
+            comentario.hora = new Date().toLocaleTimeString(); 
+        }
     }
     alert("Comentarios actualizados correctamente.");
     mostrarComentarios();
@@ -498,7 +497,6 @@ function actualizarTodosLosComentarios() {
     mostrarMayorCantidadComentarios();
     actualizarResumenAdministrador();
 }
-
 function actualizarResumenAdministrador() {
     let tabla = document.getElementById("tabla-admin");
     if (!tabla) return;
