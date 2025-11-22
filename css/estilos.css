@@ -80,6 +80,10 @@ section {
 #juego {
     scroll-margin-top: 100px;
 }
+#juego,
+#admin {
+  display: none;
+}
 
 #datos article,
 #juego article,
