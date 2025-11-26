@@ -130,7 +130,6 @@ function actualizarComboJugadores() {
 }
 function agregarComentario(event) {
     event.preventDefault();
-
     let nombre = document.getElementById("jugador").value;
     let texto = document.getElementById("comentario").value.trim();
     if (nombre === "") {
@@ -215,6 +214,11 @@ function compararPorEdad(comA, comB) {
         }
     }
     return resultado;
+}
+function ordenarComentariosPorHora(lista) {
+    return lista.sort(function (a, b) {
+        return a.hora.localeCompare(b.hora);
+    });
 }
 function mostrarMayorCantidadComentarios() {
     let maximo = 0;
@@ -426,26 +430,6 @@ function errorDiferente() {
     actualizarResumenAdministrador();
     mostrarJugadoresNuncaJugaron();
 }
-function actualizarResumenAdministrador() {
-    let tabla = document.getElementById("tabla-admin");
-    let cuerpo = tabla.querySelector("tbody");
-    cuerpo.innerHTML = "";
-    let jugadores = ordenarPorNombre(sistema.listaJugadores.slice());
-    for (let i = 0; i < jugadores.length; i++) {
-        let j = jugadores[i];
-        let fila = document.createElement("tr");
-        fila.innerHTML =
-            "<td>" + j.nombre + "</td>" +
-            "<td>" + j.edad + "</td>" +
-            "<td>" + j.cantIconoGanadas + "</td>" +
-            "<td>" + j.cantIconoPerdidas + "</td>" +
-            "<td>" + j.cantSumaGanadas + "</td>" +
-            "<td>" + j.cantSumaPerdidas + "</td>" +
-            "<td>" + j.cantComentarios() + "</td>";
-
-        cuerpo.appendChild(fila);
-    }
-}
 function mostrarComentariosAdmin() {
     let tabla = document.getElementById("tabla-edicion-comentarios");
     tabla.innerHTML = `
@@ -458,7 +442,7 @@ function mostrarComentariosAdmin() {
         </thead>
     `;
     let cuerpo = document.createElement("tbody");
-    let lista = sistema.listaComentarios;
+    let lista = ordenarComentariosPorHora(sistema.listaComentarios.slice());
     for (let i = 0; i < lista.length; i++) {
         let c = lista[i];
         let fila = document.createElement("tr");
@@ -483,7 +467,11 @@ function mostrarComentariosAdmin() {
 function actualizarTodosLosComentarios() {
     let inputs = document.getElementsByClassName("input-edicion");
     for (let i = 0; i < inputs.length; i++) {
-        let nuevoTexto = inputs[i].value;
+        let nuevoTexto = inputs[i].value.trim();
+        if (nuevoTexto===""){
+            alert("Los comentarios no pueden quedar vacíos");
+            return;
+        }
         let indice = Number(inputs[i].getAttribute("data-index"));
         let comentario = sistema.listaComentarios[indice];
         if (comentario.texto !== nuevoTexto) {
