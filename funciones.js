@@ -146,6 +146,7 @@ function agregarComentario(event) {
     mostrarMayorCantidadComentarios();
     mostrarJugadoresNuncaJugaron();
     actualizarResumenAdministrador();
+    mostrarComentariosAdmin();   
     document.getElementById("comentario").value = "";
 }
 function mostrarComentarios() {
@@ -464,19 +465,23 @@ function mostrarComentariosAdmin() {
     }
     tabla.appendChild(cuerpo);
 }
+function horaActual() {
+    return new Date().toLocaleTimeString();
+}
 function actualizarTodosLosComentarios() {
     let inputs = document.getElementsByClassName("input-edicion");
     for (let i = 0; i < inputs.length; i++) {
         let nuevoTexto = inputs[i].value.trim();
-        if (nuevoTexto===""){
-            alert("Los comentarios no pueden quedar vacíos");
-            return;
-        }
         let indice = Number(inputs[i].getAttribute("data-index"));
         let comentario = sistema.listaComentarios[indice];
+        if (nuevoTexto === "") {
+            inputs[i].value = comentario.texto;
+            alert("El comentario no puede quedar vacío.");
+            continue;
+        }
         if (comentario.texto !== nuevoTexto) {
             comentario.texto = nuevoTexto;
-            comentario.hora = new Date().toLocaleTimeString(); 
+            comentario.hora = horaActual(); 
         }
     }
     alert("Comentarios actualizados correctamente.");
